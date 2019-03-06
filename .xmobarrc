@@ -1,0 +1,106 @@
+Config {
+    font = "xft:Liberation Mono LGC:size=11:style=Bold",
+    additionalFonts = ["xft:Liberation Mono:size=10:style=Bold","xft:FontAwesome:style=Regular:size=12"]
+   , bgColor          = "#161616"
+   , fgColor          = "darkgrey"
+   , position         = Static { xpos = 0, ypos = 0, width = 1920, height = 25 },
+   , textOffset       = -1
+   , iconOffset       = -1
+   , alpha            = 180
+   , border           = NoBorder
+   , borderWidth      = 1
+   , borderColor      = "cyan"
+   , iconRoot         = "/home/xeoncpu/xbm_icons"
+   , lowerOnStart     = True
+   , hideOnStart      = False
+   , allDesktops      = True
+   , overrideRedirect = True
+   , pickBroadest     = True
+   , persistent       = True
+   , sepChar          = "%"
+   , alignSep         = "}{"
+   , template         = "<fc=white><fn=2><action=`xdotool key super+Right` button=4><action=`xdotool key super+Left` button=5>%UnsafeStdinReader%</action></action></fn></fc>}<fc=darkgrey><icon=computer-16x16.xpm/> %uptime% </fc>{<fc=darkgrey><icon=network-wired-16x16.xpm/> %dynnetwork% </fc><fc=darkgrey> <action=`XMPamacup1` button=1><action=`XMYAYUP1` button=3>%update%</action></action> <fn=2>  </fn></fc> %kbd%  %multicpu% %battery% %memory% <fc=darkgrey><icon=drive-harddisk-system-16x16.xpm/></fc> %disku%  <action=`pavucontrol` button=3><action=`XMMute` button=1><action=`xdotool key super+Up` button=4><action=`xdotool key super+Down` button=5>%XVol% </action></action></action></action> <action=`gsimplecal` button=1> <fn=2>  </fn>%date% </action> %trayerpad% "
+   , commands         =
+      [ Run MultiCpu                            [ "--template" , "<fc=darkgrey><icon=cpu.xbm/></fc><total>%"
+                                                , "--Low"      , "35"        -- units: %
+                                                , "--High"     , "85"        -- units: %
+                                                , "--low"      , "green"
+                                                , "--normal"   , "darkorange"
+                                                , "--high"     , "#fd0537"
+                                                ] 10
+
+      --, Run CoreTemp                            [ "--template" , "<fc=white><fn=2>  </fn></fc><fc=green></fc><core0>°C"
+                                                --, "--Low"      , "2"         -- units: °C
+                                                --, "--High"     , "80"        -- units: °C
+                                                --, "--low"      , "#ffffff"
+                                                --, "--normal"   , "#ffffff"
+                                                --, "--high"     , "#8F0005"
+                                                --] 10
+
+      , Run Memory                              [ "--template"   , "<fc=darkgrey><icon=mem.xbm/></fc><usedratio>%"
+                                                , "--Low"        , "20"        -- units: %
+                                                , "--High"       , "90"        -- units: %
+                                                , "--low"        , "darkgreen"
+                                                , "--normal"     , "darkorange"
+                                                , "--high"       , "darkred"
+                                                ] 10                                   
+
+      , Run Battery                             [ "--template"   , "<acstatus> <left>%"
+                                                , "--Low"        , "15"        -- units: %
+                                                , "--High"       , "95"        -- units: %
+                                                , "--low"        , "red"
+                                                , "--high"       , "darkgrey"
+                                                , "--"
+                                                , "-O"  , "<fc=white><icon=ac10.xbm/></fc>"
+                                                , "-H"  , "-20"
+                                                , "-i"  , "<fc=green><icon=ac10.xbm/></fc>"
+                                                , "-o"  , "<fc=orange><icon=batt10.xbm/></fc>"
+                                                ] 10
+      
+      , Run DynNetwork                          [ "--template"  , "<tx>kB/s|<rx>kB/s"
+                                                , "--Low"       , "1000"       -- units: B/s
+                                                , "--High"      , "5000"       -- units: B/s
+                                                , "--low"       , "green"
+                                                , "--normal"    , "darkorange"
+                                                , "--high"      , "darkred"
+                                                ] 10
+
+      
+      , Run DiskU                               [ ("/", "<used>"),  ("/mnt/iomega", "<used>")]               
+                                                [ "-L"  , "15"
+                                                , "-H"  , "20"
+                                                , "-m"  , "1"
+                                                , "-p"  , "3"
+                                                , "--normal" ,"grey"
+                                                , "--high"   ,"darkgrey"
+                                                , "--low"    ,"red"
+                                                ] 10
+      
+      , Run Uptime                              ["--template" , "<days>d <hours>h <minutes>m"  -- computer-16x16.xpm
+                                                ] 10
+
+      , Run Wireless           "wlp3s0"         ["-t", "<fc=white>Wifi:</fc> <quality>"
+                                                ] 10
+
+      , Run Com "/bin/bash" ["-c", "XMgetvolume"]  "XVol" 10
+
+	
+	 --, Run Mpris2 "spotify" ["-t", "<artist> - [<composer>] <title>"] 10
+	
+  
+
+
+
+      , Run Kbd                                 [ ("hu" , "<fc=darkgrey>hu</fc>")
+                                                , ("ee" , "<fc=#6790eb>Ee</fc>") 
+                                                ]
+
+      , Run UnsafeStdinReader
+
+	    , Run Com "/bin/bash" ["-c",  "XMKupdate"] "update" 600
+
+      , Run Date                              "%H:%M    %d.%m.%Y"   "date" 60       --  optional icons <fn=2>  </fn>
+    --, Run Com "/bin/bash" ["-c", "traystart"] "tray" 10
+      , Run Com "/bin/bash" ["-c", "trayerpad"]  "trayerpad" 10
+                                              ]
+}
