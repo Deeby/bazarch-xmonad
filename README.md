@@ -1,0 +1,2 @@
+# bazarch-xmonad
+Xmonad
