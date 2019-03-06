@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
 
-pkexec  XMPamacup
+urxvt -e  XMPamacup
 exit 0

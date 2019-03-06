@@ -6,7 +6,7 @@ mute=$(amixer get Master | awk  '/'Front' 'Left:' 'Playback'/  {print $6}')
 vol=$(amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "MM" } else { print $2 }}' | head -n 1)
 
 if [ "$vol" -le "30" -a "$mute" = "[on]" ]
-	then echo "<fc=blue><fn=2>  </fn></fc><fc=blue>$vol% </fc>"
+	then echo "<fc=white><fn=2>  </fn></fc><fc=white>$vol% </fc>"
 elif [ "$vol" -le "60" -a "$mute" = "[on]" ]
 	then echo "<fc=green><fn=2>  </fn></fc><fc=green>$vol% </fc>"
 elif [ "$vol" -le "90" -a "$mute" = "[on]" ]
@@ -15,7 +15,7 @@ elif [ "$vol" -gt "90" -a "$mute" = "[on]" ]
 	then echo "<fc=red><fn=2>  </fn></fc><fc=red>$vol% </fc>"
 
 elif [ "$mute" = "[off]" ]
-	then echo "<fc=blue><fn=2>  </fn></fc><fc=blue> Mute </fc>"
+	then echo "<fc=grey><fn=2>  </fn></fc><fc=grey> Mute </fc>"
 else
 	echo  echo "<fc=red><fn=2>  </fn></fc><fc=red>$vol% </fc>"
 

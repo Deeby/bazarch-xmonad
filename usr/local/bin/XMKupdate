@@ -6,14 +6,14 @@ arch=`checkupdates | wc -l`
 aur=`checkupdates-aur | wc -l`
 
 if [ "$arch" -eq "0" -a "$aur" -eq "0" ]
-	then echo "<fc=blue><fn=2>   </fn></fc><fc=blue>$arch </fc><fc=blue><fn=2>  </fn></fc><fc=blue> $aur </fc> "
+	then echo "<fc=grey><fn=2>   </fn></fc><fc=grey>$arch </fc><fc=grey><fn=2>  </fn></fc><fc=grey> $aur </fc> "
 
 elif [ "$arch" -gt "0" -a "$aur" -eq "0" ]
-	then echo "<fc=green><fn=2>   </fn></fc><fc=green>$arch </fc><fc=blue><fn=2>  </fn></fc><fc=blue> $aur </fc> "
+	then echo "<fc=white><fn=2>   </fn></fc><fc=white>$arch </fc><fc=grey><fn=2>  </fn></fc><fc=grey> $aur </fc> "
 elif [ "$arch" -eq "0" -a "$aur" -gt "0" ]
-	then echo "<fc=blue><fn=2>   </fn></fc><fc=blue>$arch </fc><fc=green><fn=2>  </fn></fc><fc=green> $aur </fc> "
+	then echo "<fc=grey><fn=2>   </fn></fc><fc=grey>$arch </fc><fc=white><fn=2>  </fn></fc><fc=white> $aur </fc> "
 else
-	echo "<fc=green><fn=2>   </fn></fc><fc=green>$arch </fc><fc=green><fn=2>  </fn></fc><fc=green> $aur </fc> "
+	echo "<fc=white><fn=2>   </fn></fc><fc=white>$arch </fc><fc=white><fn=2>  </fn></fc><fc=white> $aur </fc> "
 
 
 fi 
