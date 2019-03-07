@@ -99,7 +99,7 @@ Config {
 
 	    , Run Com "/bin/bash" ["-c",  "XMKupdate"] "update" 600
 
-      , Run Date                              "%H:%M    %d.%m.%Y"   "date" 60       --  optional icons <fn=2>  </fn>
+      , Run Date                              "%H:%M    %Y.%m.%d"   "date" 60       --  optional icons <fn=2>  </fn>
     --, Run Com "/bin/bash" ["-c", "traystart"] "tray" 10
       , Run Com "/bin/bash" ["-c", "trayerpad"]  "trayerpad" 10
                                               ]

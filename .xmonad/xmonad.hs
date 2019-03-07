@@ -161,7 +161,7 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
                     l = 1 - w   -- distance from left edge
 
 --TILING
-myLayoutHook = spacingRaw True (Border 0 4 4 4) True (Border 4 4 4 4) True
+myLayoutHook = spacingRaw True (Border 0 2 2 2) True (Border 2 2 2 2) True
                $ avoidStruts
               -- $ mkToggle (single MIRROR) (tiled ||| Full) 
                $ toggleLayouts (noBorders Full)
@@ -192,12 +192,12 @@ myManageHook = composeAll . concat $
         [ [className =? c --> doShift (myWorkspaces !! 0) <+> viewShift (myWorkspaces !! 0)        | c <- myWeb]
         , [className =? c --> doShift (myWorkspaces !! 1) <+> viewShift (myWorkspaces !! 1)        | c <- myDev]
         , [className =? c --> doShift (myWorkspaces !! 2) <+> viewShift (myWorkspaces !! 2)        | c <- myShell]
-        , [className =? c --> doShift (myWorkspaces !! 3) <+> viewShift (myWorkspaces !! 3)        | c <- myVMs]
+        , [className =? c --> doShift (myWorkspaces !! 3) <+> viewShift (myWorkspaces !! 3)        | c <- mySocial]
         , [className =? c --> doShift (myWorkspaces !! 4) <+> viewShift (myWorkspaces !! 4)        | c <- myMedia]
-        , [className =? c --> doShift (myWorkspaces !! 5) <+> viewShift (myWorkspaces !! 5)        | c <- mySocial]
+        , [className =? c --> doShift (myWorkspaces !! 5) <+> viewShift (myWorkspaces !! 5)        | c <- myVMs]
         , [className =? c --> doShift (myWorkspaces !! 6) <+> viewShift (myWorkspaces !! 6)        | c <- myGames]
-        , [className =? c --> doShift (myWorkspaces !! 7) <+> viewShift (myWorkspaces !! 7)        | c <- myExt]
-        , [className =? c --> doShift (myWorkspaces !! 8) <+> viewShift (myWorkspaces !! 8)        | c <- myMusic]
+        , [className =? c --> doShift (myWorkspaces !! 7) <+> viewShift (myWorkspaces !! 7)        | c <- myMusic]
+        , [className =? c --> doShift (myWorkspaces !! 8) <+> viewShift (myWorkspaces !! 8)        | c <- myExt]
         , [className =? c --> doCenterFloat                                                        | c <- myFloatC]
         , [appName   =? a --> doCenterFloat                                                        | a <- myFloatA]
         , [title     =? t --> doCenterFloat                                                        | t <- myFloatT]
@@ -212,13 +212,13 @@ myManageHook = composeAll . concat $
         where
         myWeb        = ["Google-chrome", "Chromium","firefox"]
         myDev        = ["Subl3"]
-        myShell     = ["QElectroTech","MyPaint","Xsane","libreoffice-startcenter","libreoffice-impress","libreoffice-writer", "libreoffice-calc","libreoffice-draw"]
-        myVMs        = ["discord","VirtualBox","VBoxSDL","Virt-manager"]
-        myMedia      = ["mpv","Shotwell","Gpicview","Totem"]
-        mySocial     = ["ViberPC","TelegramDesktop"]
+        myShell      = ["urxvt","st","Xsane","libreoffice-startcenter","libreoffice-impress","libreoffice-writer", "libreoffice-calc","libreoffice-draw"]
+        mySocial     = ["discord","ViberPC","TeamViewer","TelegramDesktop"]
+        myMedia      = ["mpv","Shotwell","Gpicview","Vlc"]
+        myVMs        = ["VirtualBox","TelegramDesktop"]
         myGames      = ["steam"]
-        myExt        = ["TeamViewer"]
-        myMusic      = ["Thunar"]
+        myMusic      = ["Spotify"]
+        myExt        = ["Thunar"]
 
 --FLOATING
         myFloatC     = ["Oblogout", "GParted","Bleachbit","Nm-connection-editor","System-config-printer.py"]
